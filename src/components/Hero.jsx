@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { ChevronDown } from 'lucide-react';
 import TechImage from '../Tech.svg';
-import PeopleImage from '../people.svg';
+import PeopleImage from '../People.svg';
 import MediaImage from '../Media.svg';
 import VideoBackground from '../0_Animation_Connected_4096x2160.mp4';
 import './Hero.css';
