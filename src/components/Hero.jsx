@@ -1,71 +1,146 @@
-import React, { useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
+import { ChevronDown } from 'lucide-react';
+import TechImage from '../Tech.svg';
+import PeopleImage from '../people.svg';
+import MediaImage from '../Media.svg';
+import VideoBackground from '../0_Animation_Connected_4096x2160.mp4';
+import './Hero.css';
+
+// Add Google Fonts link in your index.html or _document.js file
 
 const Hero = () => {
-  const videoRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (videoRef.current) {
-      observer.observe(videoRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
+  const [hoveredImage, setHoveredImage] = useState(null);
+  const [activeWord, setActiveWord] = useState(null);
+  const heroRef = useRef(null);
+  
+  const handleWordHover = (image, word) => {
+    setHoveredImage(image);
+    setActiveWord(word);
+  };
+  
+  const handleMouseLeave = () => {
+    setHoveredImage(null);
+    setActiveWord(null);
+  };
+  
+  const isWordVisible = (word) => {
+    return !activeWord || activeWord === word;
+  };
+  
   return (
-    <section className="overflow-hidden relative w-full h-screen bg-black">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black">
-        <div className="absolute inset-0 opacity-20">
-          <div className="w-full h-full bg-gradient-to-r via-transparent animate-pulse from-blue-500/20 to-blue-500/20"></div>
-          <div className="absolute top-0 left-0 w-full h-full">
-            <div className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full blur-xl animate-bounce bg-blue-500/10"></div>
-            <div className="absolute top-3/4 right-1/4 w-48 h-48 rounded-full blur-2xl delay-1000 animate-pulse bg-blue-500/5"></div>
-            <div className="absolute top-1/2 left-1/2 w-64 h-64 to-transparent rounded-full transform -translate-x-1/2 -translate-y-1/2 bg-gradient-radial from-blue-500/10 animate-spin-slow"></div>
-          </div>
-        </div>
+    <section 
+      ref={heroRef}
+      id="about-us"
+      className="relative flex items-center justify-center overflow-hidden"
+      style={{ 
+        height: '90vh',
+        marginTop: '10vh', // 20vh for navbar
+        minHeight: 'auto' // Remove min-h-screen
+      }}
+    >
+      {/* Video Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src={VideoBackground} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+        
+        {/* Hover Image Overlay */}
+        <div 
+          className={`absolute inset-0 transition-all duration-500 ${hoveredImage ? 'opacity-100' : 'opacity-0'}`}
+          style={{
+            backgroundImage: hoveredImage ? `url(${hoveredImage})` : 'none',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+          }}
+        />
       </div>
 
-      {/* Content */}
-      <div 
-        ref={videoRef}
-        className="relative z-10 flex flex-col justify-center items-center px-8 h-full text-center opacity-0 transform translate-y-8"
-      >
-        {/* Logo */}
-        <div className="mb-8">
-          <div className="px-6 py-3 text-4xl font-black tracking-widest text-white border-2 border-white">
-            TPMX
-          </div>
-        </div>
-
-        {/* Main Heading */}
-        <h1 className="mb-6 text-6xl font-black tracking-tight leading-none text-white md:text-8xl">
-          WE BUILD<br />
-          <span className="text-blue-500">BRAND SYSTEMS</span>
+      {/* Main Content */}
+      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center px-6 max-w-6xl mx-auto mt-16 md:mt-28">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-center leading-tight tracking-tight">
+          <span 
+            className="brand-tagline block text-white font-bold mb-4 md:mb-6 transition-opacity duration-300"
+            style={{ opacity: !activeWord ? 1 : 0 }}
+          >
+            Where brands are born — at the intersection of
+          </span>
+          <span 
+            className="block text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-6 md:mb-8 transition-opacity duration-300"
+            style={{ opacity: !activeWord ? 1 : 0 }}
+          >
+        
+          </span>
+          <span className="relative inline-flex flex-wrap justify-center gap-x-2 gap-y-4 brand-words">
+            <div className="relative group">
+              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="text-3xl">👥</span>
+              </div>
+              <span 
+                className="relative px-4 py-2 cursor-pointer group transition-all duration-300 rounded-lg block"
+                onMouseEnter={() => handleWordHover(PeopleImage, 'people')}
+                onMouseLeave={handleMouseLeave}
+                style={{ opacity: isWordVisible('people') ? 1 : 0, transition: 'opacity 0.3s' }}
+              >
+                <span className="relative z-10 font-black text-[#FFFF00] group-hover:text-[#FFFF00] transition-colors duration-300 font-montserrat">
+                  People
+                </span>
+                <span className="absolute inset-0 bg-yellow-100 group-hover:bg-[#6F0085] rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-95 group-hover:scale-100"></span>
+              </span>
+            </div>
+            <span className="self-center text-white font-montserrat" style={{ opacity: isWordVisible('people') && isWordVisible('tech') ? 1 : 0, transition: 'opacity 0.3s' }}> - </span>
+            <div className="relative group">
+              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="text-3xl">💻</span>
+              </div>
+              <span 
+                className="relative px-4 py-2 cursor-pointer group transition-all duration-300 rounded-lg block"
+                onMouseEnter={() => handleWordHover(TechImage, 'tech')}
+                onMouseLeave={handleMouseLeave}
+                style={{ opacity: isWordVisible('tech') ? 1 : 0, transition: 'opacity 0.3s' }}
+              >
+                <span className="relative z-10 font-black text-[#FFFF00] group-hover:text-[#FFFF00] transition-colors duration-300 font-montserrat">
+                  Tech
+                </span>
+                <span className="absolute inset-0 bg-yellow-100 group-hover:bg-[#102667] rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-95 group-hover:scale-100"></span>
+              </span>
+            </div>
+            <span className="self-center text-white font-montserrat" style={{ opacity: isWordVisible('tech') && isWordVisible('media') ? 1 : 0, transition: 'opacity 0.3s' }}> - </span>
+            <div className="relative group">
+              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="text-3xl">🎥</span>
+              </div>
+              <span 
+                className="relative px-4 py-2 cursor-pointer group transition-all duration-300 rounded-lg block"
+                onMouseEnter={() => handleWordHover(MediaImage, 'media')}
+                onMouseLeave={handleMouseLeave}
+                style={{ opacity: isWordVisible('media') ? 1 : 0, transition: 'opacity 0.3s' }}
+              >
+                <span className="relative z-10 font-black text-[#FFFF00] group-hover:text-[#FFFF00] transition-colors duration-300 font-montserrat">
+                  Media
+                </span>
+                <span className="absolute inset-0 bg-yellow-100 group-hover:bg-[#c62c2a] rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-95 group-hover:scale-100"></span>
+              </span>
+            </div>
+          </span>
         </h1>
-
-        {/* Subheading */}
-        <p className="max-w-2xl text-xl font-light leading-relaxed text-white/80 md:text-2xl">
-          Technology. People. Media. The complete blueprint for brand success.
-        </p>
-
-        {/* CTA Button */}
-        <button className="px-8 py-4 mt-12 text-lg font-semibold text-white bg-blue-500 transition-all duration-300 hover:bg-blue-600 hover:scale-105 hover:shadow-2xl group">
-          <span className="transition-all duration-300 group-hover:tracking-wider">VIEW OUR WORK</span>
-        </button>
       </div>
-
-
+      
+      <div className="absolute transform -translate-x-1/2 bottom-8 left-1/2 animate-bounce">
+        <ChevronDown className="w-8 h-8 text-gray-900" />
+      </div>
     </section>
   );
 };
