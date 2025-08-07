@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import TechImage from '../Tech.svg';
-import PeopleImage from '../People.svg';
+import TechImage from '../Tech SVG.svg';
+import PeopleImage from '../PEOPLE SVG.svg';
 import MediaImage from '../Media.svg';
-import HeroBackground from '../Hero_Background_2.svg';
+import HeroBackground from '../Hero_Background_4.svg';
+
 import './Hero.css';
 
 const images = [
@@ -127,10 +128,9 @@ const Hero = () => {
   return (
     <section 
       ref={heroRef} 
-      className="relative flex flex-col items-center justify-center overflow-hidden" 
+      className="relative flex flex-col items-center justify-start pt-20 overflow-hidden" 
       style={{ 
-        height: '90vh', 
-        marginTop: '10vh',
+        minHeight: '100vh',
         backgroundImage: `url(${HeroBackground})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -138,11 +138,11 @@ const Hero = () => {
       }}
     >
       {/* Tagline */}
-      <div className="mt-12 md:mt-20 text-center">
+      <div className="mt-12 md:mt-15 text-center">
         <div className="text-lg md:text-4xl font-montserrat tracking-wide mb-4 text-black">
           WHERE BRANDS ARE BORN AT THE INTERSECTION OF
         </div>
-        <div className="text-3xl md:text-5xl font-black font-montserrat text-black mb-10 tracking-widest uppercase text-center">
+        <div className="text-3xl md:text-5xl font-black font-montserrat text-black mb-20 tracking-widest uppercase text-center">
           {images.map((img, idx) => (
             <span 
               key={img.alt}
