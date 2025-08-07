@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Logo from '../logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,11 +10,16 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a 
-              href="#home" 
-              className="text-2xl font-extrabold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent"
-            >
-              TPMX
+            <a href="#home" className="flex items-center">
+              <img 
+                src={Logo} 
+                alt="TPMX Logo" 
+                className="h-10 w-auto" // Adjust height as needed
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              />
             </a>
           </div>
           
