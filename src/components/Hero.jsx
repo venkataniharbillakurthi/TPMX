@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import TechImage from '../Tech.svg';
 import PeopleImage from '../People.svg';
 import MediaImage from '../Media.svg';
-import HeroBackground from '../Hero_Background_1.svg';
+import HeroBackground from '../Hero_Background_2.svg';
 import './Hero.css';
 
 const images = [
