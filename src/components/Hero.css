@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
+
+.brand-tagline,
+.brand-words,
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  color: #111;
+}
+
+.brand-tagline {
+  font-size: 2.0rem;
+  line-height: 0.2rem;
+  letter-spacing: 0.01em;
+}
+
+.brand-words {
+  font-size: 2.2rem;
+  line-height: 2.6rem;
+  letter-spacing: -0.01em;
+}
+
+/* For the words that should be bolder */
+.brand-words .font-black {
+  font-weight: 700;
+}
+
+.brand-words span.relative.block {
+  background: transparent;
+  color: #fff;
+  transition: background 0.2s, color 0.2s;
+}
+
+.brand-words span.relative.block:hover {
+  background: #ff0000;
+  color: #fff;
+}

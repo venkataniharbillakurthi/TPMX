@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 152.35 56.3">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #e30e00;
+      }
+
+      .cls-2 {
+        font-family: SatoshiVariable-Bold, 'Satoshi Variable';
+        font-size: 50px;
+        font-variation-settings: 'wght' 900;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <text class="cls-2" transform="translate(0 43.5)"><tspan x="0" y="0">TPM</tspan></text>
+    <path class="cls-1" d="M108.21,6.34h12.34c.28,0,.55.12.73.34l14.76,17.42c.27.32.26.78,0,1.09l-15.5,17.77c-.23.26-.56.41-.91.41h-11.89s14.38-18.52,14.38-18.52l-13.91-18.52Z"/>
+    <path class="cls-1" d="M133.7,17.45l3.91,4.38c.24.27.66.27.9,0l13.85-15.49-10.55.15c-.41,0-.81.19-1.08.5l-7.04,8.09c-.59.68-.59,1.69.01,2.37Z"/>
+    <path class="cls-1" d="M137.7,27.2l-4.43,5.18c-.34.4-.34,1,0,1.4l7.97,9.15c.26.29.63.46,1.02.46h10.09l-13.72-16.19c-.25-.28-.69-.27-.93.01Z"/>
+  </g>
+</svg>
