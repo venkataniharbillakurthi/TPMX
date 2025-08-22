@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import Ellipse3 from '../assests/Ellipse 3.svg';
-import PencilImage from '../assests/PENCIL 1.svg';
+import Ellipse3 from '../assests/Ellipse.svg';
+import PencilImage from '../assests/PENCIL.svg';
+import DigitalUX from '../assests/digital_UX 1.svg';
+import MediaMagicGirl from '../assests/MEDIA_MAGIC_GIRL.svg';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -122,7 +124,7 @@ const Process = () => {
                 transition={{ type: 'spring', stiffness: 300, damping: 10 }}
               >
                 <img 
-                  src="/src/assests/digital UX 1.svg" 
+                  src={DigitalUX} 
                   alt="Digital Experiences" 
                   className="w-full max-w-[200px] md:max-w-[290px] translate-y-4"
                 />
@@ -149,7 +151,7 @@ const Process = () => {
                 transition={{ type: 'spring', stiffness: 300, damping: 10 }}
               >
                 <img 
-                  src="/src/assests/MEDIA MAGIC GIRL.svg" 
+                  src={MediaMagicGirl} 
                   alt="Media Magic" 
                   className="w-full max-w-[180px] md:max-w-[230px] translate-x-8"
                 />

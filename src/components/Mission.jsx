@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
-import creativeHome from '../assests/CREATIVE HOME.svg';
+import creativeHome from '../assests/CREATIVE_HOME.svg';
 
 const container = {
   hidden: { opacity: 0 },

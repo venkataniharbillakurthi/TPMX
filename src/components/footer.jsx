@@ -1,5 +1,5 @@
 import { FaInstagram, FaFacebookF, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
-import upIcon from '../assests/UP ICON.svg';
+import upIcon from '../assests/UP_ICON.svg';
 import footerImage from '../assests/photo_6100676465155754245_y.jpg';
 
 const socialLinks = [
