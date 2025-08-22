@@ -10,7 +10,7 @@ import uberLogo from '../assests/Uber-logo.png';
 import youtubeLogo from '../assests/YouTube-logo.webp';
 import spotifyLogo from '../assests/spotify-logo.jpg';
 import sonyLogo from '../assests/sony-logo.gif';
-import ideaIcon from '../assests/IDEA.svg';
+import ideaIcon from "../assests/IDEA 2 ICON 1.svg";
 import noise from '../assests/noise.svg';
 
 const fadeInUp = {

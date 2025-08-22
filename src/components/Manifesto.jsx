@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView, useAnimation, AnimatePresence } from 'framer-motion';
 import noise from '../assests/noise.svg';
-import ideaIcon from "../assests/IDEA.svg";
+import ideaIcon from "../assests/IDEA 2 ICON 1.svg";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
