@@ -4,6 +4,7 @@ import Ellipse3 from '../assests/Ellipse.svg';
 import PencilImage from '../assests/PENCIL.svg';
 import DigitalUX from '../assests/digital_UX.svg';
 import MediaMagicGirl from '../assests/MEDIA_MAGIC_GIRL.svg';
+import BrandingIdentity from '../assests/branding_and_identity.svg';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -97,7 +98,7 @@ const Process = () => {
                 transition={{ type: 'spring', stiffness: 300, damping: 10 }}
               >
                 <img 
-                  src="/src/assests/branding and identity 1.svg" 
+                  src={BrandingIdentity} 
                   alt="Branding and Identity" 
                   className="w-full max-w-[240px] md:max-w-[340px]"
                 />
