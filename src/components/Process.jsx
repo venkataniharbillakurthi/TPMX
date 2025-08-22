@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import Ellipse3 from '../assests/Ellipse.svg';
 import PencilImage from '../assests/PENCIL.svg';
-import DigitalUX from '../assests/digital_UX 1.svg';
+import DigitalUX from '../assests/digital_UX.svg';
 import MediaMagicGirl from '../assests/MEDIA_MAGIC_GIRL.svg';
 
 const fadeInUp = {
