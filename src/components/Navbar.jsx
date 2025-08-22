@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BookDemoModal from './BookDemoModal';
-import TPMXLogo from '../assests/logo.png'; // Save the image as tpmx-logo.png in src/assests
+import logo from "../assests/logo.png";
+ // Save the image as tpmx-logo.png in src/assests
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,14 +23,14 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 z-50 w-full bg-white border-b border-gray-100 shadow-sm font-sans" style={{ fontFamily: 'Satoshi, sans-serif', color: '#000000' }}>
+    <nav className="fixed top-0 left-0 z-50 w-full font-sans bg-white border-b border-gray-100 shadow-sm" style={{ fontFamily: 'Satoshi, sans-serif', color: '#000000' }}>
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
             <a href="#home">
               <img 
-                src={TPMXLogo} 
+                src={logo} 
                 alt="TPMX Logo" 
                 className="w-auto h-10"
                 style={{ maxHeight: '40px' }}
