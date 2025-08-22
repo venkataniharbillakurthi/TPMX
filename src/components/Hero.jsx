@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { ChevronDown } from 'lucide-react';
-import VideoBackground from '../assests/webvideo.mp4';
+// Video is loaded from public directory
 import './Hero.css';
 import { motion } from 'framer-motion';
 
@@ -33,7 +33,7 @@ const Hero = () => {
           playsInline 
           className="absolute inset-0 object-cover w-full h-full"
         >
-          <source src={VideoBackground} type="video/mp4" />
+          <source src="/videos/webvideo.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
