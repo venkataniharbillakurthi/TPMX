@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import BookDemoModal from './BookDemoModal';
-import logo from "../assests/logo.png";
+import logo from "../components/Final Logo.svg";
  // Save the image as tpmx-logo.png in src/assests
 
 const Navbar = () => {
