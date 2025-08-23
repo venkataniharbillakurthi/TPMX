@@ -14,6 +14,14 @@ yarn-error.log*
 .env.local
 .env.*.local
 
+# Media files
+*.mp4
+*.mov
+*.avi
+*.wmv
+*.flv
+*.mkv
+
 # IDE/editor stuff
 .vscode/
 .idea/

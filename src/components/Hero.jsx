@@ -34,7 +34,7 @@ const Hero = () => {
           preload="auto"
           className="absolute inset-0 object-cover w-full h-full"
         >
-          <source src="/videos/webvideo.mp4" type="video/mp4" />
+          <source src="https://res.cloudinary.com/dhzhuobu2/video/upload/v1755885121/webvideo_hxmyjf.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
