@@ -53,7 +53,7 @@ const Navbar = () => {
                 </div>
                 <a
                   href={`#${item.id}`}
-                  className="relative px-1 py-2 text-sm font-medium text-black transition-colors duration-200 hover:text-yellow-600 group"
+                  className="relative px-1 py-2 text-sm font-medium text-black transition-colors duration-200 hover:text-black group"
                   onClick={(e) => {
                     e.preventDefault();
                     const target = document.getElementById(item.id);
@@ -69,7 +69,7 @@ const Navbar = () => {
                   }}
                 >
                   {item.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#e30e00] transition-all duration-300 group-hover:w-full"></span>
                 </a>
               </div>
             ))}

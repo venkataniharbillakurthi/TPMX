@@ -344,7 +344,7 @@ const Clients = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <span className="inline-block px-4 py-2 text-lg font-satoshi text-[#e30e00] uppercase tracking-wider border-2 border-[#e30e00] rounded-full">
+                <span className="inline-block px-2 py-1 text-lg font-satoshi text-[#e30e00] uppercase tracking-wider border-2 border-[#e30e00] rounded-full">
                   Get in touch
                 </span>
               </motion.div>
