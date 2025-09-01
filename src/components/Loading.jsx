@@ -36,7 +36,7 @@ const Loading = ({ onLoadingComplete }) => {
             playsInline
             className="w-full h-full object-contain"
           >
-            <source src="/videos/logo.mp4" type="video/mp4" />
+            <source src="../assests/logo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </motion.div>
