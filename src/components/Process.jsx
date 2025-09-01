@@ -83,11 +83,56 @@ const Process = () => {
                 <h3 className="font-poppins text-2xl md:text-3xl text-white">
                   Branding & Identity
                 </h3>
-                <p className="font-sans text-white text-lg mt-6 leading-relaxed">
-                  Name it.<br />
-                  Shape it.<br />
-                  Launch it.
-                </p>
+                <motion.div 
+                  className="relative mt-2 pl-2 border-l border-white/10"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+                  variants={staggerContainer}
+                >
+                  {[
+                    { text: 'Name it.', delay: 0.1 },
+                    { text: 'Shape it.', delay: 0.2 },
+                    { text: 'Launch it.', delay: 0.3 }
+                  ].map((item, index) => (
+                    <motion.div
+                      key={index}
+                      className="relative group py-0.5 pl-4 -ml-2 rounded-r-lg hover:bg-white/5 transition-colors duration-200 cursor-default"
+                      variants={{
+                        hidden: { opacity: 0, x: -10 },
+                        visible: { 
+                          opacity: 1, 
+                          x: 0,
+                          transition: { 
+                            duration: 0.5, 
+                            delay: item.delay,
+                            ease: [0.16, 1, 0.3, 1]
+                          } 
+                        }
+                      }}
+                      whileHover={{ 
+                        x: 6,
+                        transition: { duration: 0.2 }
+                      }}
+                    >
+                      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200 transform scale-0 group-hover:scale-100" />
+                      <div className="absolute right-3 top-1/2 -translate-y-1/2 text-xl opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-x-3 group-hover:translate-x-0">
+                        {item.emoji}
+                      </div>
+                      <span className="text-xl md:text-2xl font-medium text-white font-poppins tracking-wide relative inline-block">
+                        <span className="relative z-10 flex items-center">
+                          <span className="text-sm mr-2 text-white/40 group-hover:text-white transition-colors duration-200">
+                            0{index + 1}
+                          </span>
+                          <span>
+                            {item.text}
+                            <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-white to-white/0 group-hover:w-full transition-all duration-500 ease-out" />
+                          </span>
+                        </span>
+                      </span>
+                    </motion.div>
+                  ))}
+                </motion.div>
                 <p className="font-sans text-white text-base md:text-lg mt-2 leading-relaxed max-w-[90%]">
                   From logo systems to tone of voice, we give your brand a soul and a suit of armour.
                 </p>

@@ -166,6 +166,30 @@ const Clients = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [showContactForm, setShowContactForm] = useState(false);
+  
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+  
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    }
+  };
 
   const clients = [
     { name: 'MICROSOFT', logo: microsoftLogo },
@@ -195,6 +219,12 @@ const Clients = () => {
       ref={ref}
       className="relative pt-24 pb-12 md:py-18 overflow-hidden bg-white -mt-20 md:-mt-36"
     >
+      <motion.div
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={containerVariants}
+        className="relative z-10"
+      >
 
       {/* Background for Mobile */}
       <div className="absolute inset-0 lg:hidden z-[-1] flex justify-center items-center opacity-10">
@@ -319,7 +349,7 @@ const Clients = () => {
           <img 
             src={noise} 
             alt="Noise texture" 
-            className="w-74 h-64 -mt-16 ml-28 -mt-24"
+            className="w-74 h-64 -mt-16 ml-48 -mt-24"
           />
         </motion.div>
 
@@ -330,19 +360,16 @@ const Clients = () => {
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Left Column - Title */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="space-y-4"
+            <motion.div 
+              className="text-center mb-12 md:mb-20"
+              variants={itemVariants}
             >
               <motion.div 
                 className="inline-block"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <span className="inline-block px-2 py-1 text-lg font-satoshi text-[#e30e00] uppercase tracking-wider border-2 border-[#e30e00] rounded-full">
                   Get in touch
@@ -383,7 +410,8 @@ const Clients = () => {
           </div>
         </motion.div>
         {showContactForm && <ContactForm onClose={() => setShowContactForm(false)} />}
-      </div>
+        </div>
+      </motion.div>
     </section>
   );
 };

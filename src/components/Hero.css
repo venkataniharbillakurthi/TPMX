@@ -30,10 +30,19 @@
 .brand-words span.relative.block {
   background: transparent;
   color: #fff;
-  transition: background 0.2s, color 0.2s;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.75rem;
+  margin: -0.25rem -0.5rem;
 }
 
 .brand-words span.relative.block:hover {
-  background: #ff0000;
+  background: rgba(255, 0, 0, 0.7);
   color: #fff;
+  transform: scale(0.95);
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.2rem;
+  margin: -0.1rem -0.2rem;
 }

@@ -4,33 +4,30 @@ import backgroundImage from '../assests/background_2.svg';
 import DynamicImage from './DynamicImage';
 import chatgptTech from '../assests/chatgpt-tech.jpg';
 import perplexityTech from '../assests/perplexity-tech.png';
-import veo3Tech from '../assests/veo3-tech.jpg';
+import veo3Tech from '../assests/veo3-tech.png';
 import cursorTech from '../assests/cursor-tech.png';
-import speedPeople from '../assests/speed-people.webp';
-import mrbeastPeople from '../assests/mrbeast-people.jpg';
+import speedPeople from '../assests/speed-people.png';
+import mrbeastPeople from '../assests/mrbeast-people.png';
 import ranveerShowPeople from '../assests/the-ranveer-show-people.webp';
 import instaMedia from '../assests/insta-media.jpg';
 import facebookMedia from '../assests/facebook-media.jpg';
 import xMedia from '../assests/x-media.jpg';
+import './Services.css';
 
 const ServiceCard = ({ emoji, title, description, index, dynamicImages }) => {
-  const borderColors = ['#940900', '#080071', '#680082'];
-  const borderColor = borderColors[index % borderColors.length];
+  const serviceTypes = ['tech', 'media', 'people'];
+  const serviceType = serviceTypes[index % serviceTypes.length];
   
   return (
     <div 
-      className="relative bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 group overflow-hidden"
+      className={`service-card bg-white p-8 rounded-lg shadow-lg hover:shadow-xl ${serviceType}`}
     >
-      <div 
-        className="absolute bottom-0 left-0 w-0 h-1 transition-all duration-300 group-hover:w-full"
-        style={{ backgroundColor: borderColor }}
-      ></div>
-      <div className="flex items-start space-x-4">
-        <div className="text-4xl w-12 h-12 flex-shrink-0">
+      <div className="service-content flex items-start space-x-4">
+        <div className="service-emoji text-4xl w-12 h-12 flex-shrink-0 flex items-center justify-center">
           {dynamicImages ? (
             <DynamicImage images={dynamicImages} interval={2000} />
           ) : (
-            emoji
+            <span className="inline-block">{emoji}</span>
           )}
         </div>
         <div>
@@ -115,14 +112,14 @@ const Services = () => {
     <section 
       ref={sectionRef}
       id="services" 
-      className="relative pt-32 pb-64 px-4 sm:px-6 lg:px-4 bg-white overflow-hidden"
+      className="relative pt-20 pb-32 px-4 sm:px-6 lg:px-6 bg-white overflow-hidden"
     >
       {/* Background Image */}
       <motion.div 
         className="absolute inset-0 w-full h-full z-10"
         style={{
           backgroundImage: `url(${backgroundImage})`,
-          marginTop: '140px',
+          marginTop: '166px',
           backgroundSize: 'contain',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -168,7 +165,7 @@ const Services = () => {
 
             {/* Right Column */}
             <motion.div 
-              className="space-y-1"
+              className="space-y-4"
               variants={{
                 hidden: { opacity: 0 },
                 show: {

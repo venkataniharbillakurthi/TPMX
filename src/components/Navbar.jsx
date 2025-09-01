@@ -25,35 +25,32 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 z-50 w-full font-sans bg-white border-b border-gray-100 shadow-sm" style={{ fontFamily: 'Satoshi, sans-serif', color: '#000000' }}>
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
             <a href="#home">
               <img 
                 src={logo} 
                 alt="TPMX Logo" 
-                className="w-auto h-10"
+                className="w-auto h-8 md:h-10"
                 style={{ maxHeight: '40px' }}
               />
             </a>
           </div>
           
           {/* Desktop Navigation */}
-          <div className="items-center hidden ml-10 space-x-8 md:flex">
+          <div className="items-center hidden ml-10 space-x-1 md:flex">
             {[
-              { name: 'Welcome Hub', id: 'about-us' },
-              { name: 'What We Do', id: 'services' },
-              { name: 'Our Why', id: 'mission' },
-              { name: 'How We Work', id: 'process' },
-              { name: 'Partners', id: 'clients' }
+              { name: 'Welcome Hub', id: 'about-us', emoji: '👋' },
+              { name: 'What We Do', id: 'services', emoji: '🎯' },
+              { name: 'Our Why', id: 'mission', emoji: '💡' },
+              { name: 'How We Work', id: 'process', emoji: '🔄' },
+              { name: 'Partners', id: 'clients', emoji: '🤝' }
             ].map((item, index) => (
-              <div className="relative group" key={index}>
-                <div className="absolute transition-opacity duration-300 transform -translate-x-1/2 opacity-0 -top-8 left-1/2 group-hover:opacity-100">
-                  <span className="text-xl">{['👋', '🎯', '💡', '🔄', '🤝'][index]}</span>
-                </div>
+              <div className="relative flex items-center justify-center group" key={index}>
                 <a
                   href={`#${item.id}`}
-                  className="relative px-1 py-2 text-sm font-medium text-black transition-colors duration-200 hover:text-black group"
+                  className="relative px-4 py-2 text-sm font-medium text-black transition-all duration-300 group-hover:scale-110 min-w-[100px] text-center"
                   onClick={(e) => {
                     e.preventDefault();
                     const target = document.getElementById(item.id);
@@ -68,8 +65,12 @@ const Navbar = () => {
                     }
                   }}
                 >
-                  {item.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#e30e00] transition-all duration-300 group-hover:w-full"></span>
+                  <span className="inline-flex items-center justify-center w-full h-full text-base transition-all duration-300 group-hover:scale-0 group-hover:opacity-0">
+                    {item.name}
+                  </span>
+                  <span className="absolute inset-0 flex items-center justify-center text-3xl transition-all duration-300 transform scale-50 opacity-0 group-hover:opacity-100 group-hover:scale-100">
+                    {item.emoji}
+                  </span>
                 </a>
               </div>
             ))}
@@ -83,7 +84,7 @@ const Navbar = () => {
           </div>
           
           {/* Mobile menu button */}
-          <div className="flex md:hidden">
+          <div className="flex items-center md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"

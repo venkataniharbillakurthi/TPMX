@@ -1,21 +1,28 @@
 import { useRef } from 'react';
 import { ChevronDown } from 'lucide-react';
-// Video is now served from the public directory
 import './Hero.css';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Parallax } from './Parallax';
 
 const Hero = () => {
   const heroRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start']
+  });
+
+  const yBg = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const yText = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
 
   return (
     <section 
       id="about-us"
       ref={heroRef} 
-      className="relative flex items-center justify-center overflow-hidden"
+      className="relative flex items-center justify-center overflow-hidden h-screen"
       style={{ 
-        height: '80vh',
-        marginTop: '10vh',
-        minHeight: 'auto'
+        marginTop: '0',
+        height: '100vh'
       }}
     >
       {/* Trusted By Section */}
@@ -24,8 +31,11 @@ const Hero = () => {
           <span className="font-sans text-xs font-normal text-white">Get Success Together!</span>
         </div>
       </div>
-      {/* Video Background */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Video Background with Parallax */}
+      <motion.div 
+        className="absolute inset-0 overflow-hidden"
+        style={{ y: yBg }}
+      >
         <video 
           autoPlay
           loop
@@ -38,10 +48,13 @@ const Hero = () => {
           Your browser does not support the video tag.
         </video>
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-      </div>
+      </motion.div>
 
-      {/* Main Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center w-full h-full max-w-6xl px-6 mx-auto mt-16 md:mt-2">
+      {/* Main Content with Parallax */}
+      <motion.div 
+        className="relative z-10 flex flex-col items-center justify-center w-full h-full max-w-6xl px-6 mx-auto"
+        style={{ y: yText }}
+      >
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-center md:text-6xl lg:text-7xl">
           <span 
             className="block text-xl font-medium text-white transition-opacity duration-300 font-poppins brand-tagline md:text-2xl lg:text-3xl"
@@ -63,9 +76,9 @@ const Hero = () => {
             </span>
           </span>
         </h1>
-      </div>
+      </motion.div>
       
-      <div className="absolute transform -translate-x-1/2 bottom-8 left-1/2">
+      <div className="absolute z-20 transform -translate-x-1/2 bottom-8 left-1/2">
         <motion.button 
           onClick={() => {
             const odenSection = document.getElementById('oden');

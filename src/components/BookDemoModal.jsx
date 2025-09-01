@@ -57,7 +57,7 @@ const BookDemoModal = ({ isOpen, onClose }) => {
       formDataToSend.append('subject', formData.subject);
       formDataToSend.append('message', formData.description);
       
-      const response = await fetch('https://formsubmit.co/ajax/venkataniharbillakurthi@gmail.com', {
+      const response = await fetch('https://formsubmit.co/ajax/tpmx.creative@gmail.com', {
         method: 'POST',
         body: formDataToSend,
         headers: {
@@ -122,13 +122,13 @@ const BookDemoModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
       <div 
         ref={modalRef}
-        className="bg-white rounded-2xl w-full max-w-2xl mx-4 overflow-hidden shadow-xl"
+        className="w-full max-w-2xl mx-4 overflow-hidden bg-white shadow-xl rounded-2xl"
       >
         <div className="p-8">
-          <div className="flex justify-between items-center mb-6">
+          <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-black font-poppins">Book a Call</h2>
             <button 
               onClick={onClose}
@@ -164,7 +164,7 @@ const BookDemoModal = ({ isOpen, onClose }) => {
             className="space-y-4"
           >
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1 font-sans">
+              <label htmlFor="name" className="block mb-1 font-sans text-sm font-medium text-gray-700">
                 Name <span className="text-red-500">*</span>
               </label>
               <input
@@ -181,9 +181,9 @@ const BookDemoModal = ({ isOpen, onClose }) => {
               {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1 font-sans">
+                <label htmlFor="email" className="block mb-1 font-sans text-sm font-medium text-gray-700">
                   Email <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -201,7 +201,7 @@ const BookDemoModal = ({ isOpen, onClose }) => {
               </div>
 
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1 font-sans">
+                <label htmlFor="phone" className="block mb-1 font-sans text-sm font-medium text-gray-700">
                   Phone Number <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -220,7 +220,7 @@ const BookDemoModal = ({ isOpen, onClose }) => {
             </div>
 
             <div>
-              <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1 font-sans">
+              <label htmlFor="subject" className="block mb-1 font-sans text-sm font-medium text-gray-700">
                 Subject <span className="text-red-500">*</span>
               </label>
               <input
@@ -238,7 +238,7 @@ const BookDemoModal = ({ isOpen, onClose }) => {
             </div>
 
             <div>
-              <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1 font-sans">
+              <label htmlFor="description" className="block mb-1 font-sans text-sm font-medium text-gray-700">
                 Description
               </label>
               <textarea
@@ -262,7 +262,7 @@ const BookDemoModal = ({ isOpen, onClose }) => {
               >
                 {isSubmitting ? (
                   <>
-                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 mr-2 -ml-1 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
