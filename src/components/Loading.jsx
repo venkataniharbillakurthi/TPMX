@@ -33,8 +33,11 @@ const Loading = ({ onLoadingComplete }) => {
           <video
             autoPlay
             muted
+            loop
             playsInline
+            preload="auto"
             className="w-full h-full object-contain"
+            onError={(e) => console.error('Video failed to load:', e)}
           >
             <source src="/videos/logo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
