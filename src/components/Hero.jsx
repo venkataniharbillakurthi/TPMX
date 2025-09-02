@@ -37,12 +37,20 @@ const Hero = () => {
           loop 
           muted 
           playsInline 
-          preload="auto" 
+          preload="auto"
           webkit-playsinline="true"
-          poster="/fallback.jpg"   // <-- fallback image
           className="absolute inset-0 object-cover w-full h-full"
+          onError={(e) => {
+            console.error('Error loading video:', e);
+            const video = e.target;
+            video.poster = '/fallback.jpg';
+            video.load();
+          }}
         >
-          <source src="https://res.cloudinary.com/dhzhuobu2/video/upload/v1755885121/webvideo_hxmyjf.mp4" type="video/mp4" />
+          <source 
+            src="https://res.cloudinary.com/dhzhuobu2/video/upload/v1755885121/webvideo_hxmyjf.mp4" 
+            type="video/mp4"
+          />
           Your browser does not support the video tag.
         </video>
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
