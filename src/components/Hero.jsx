@@ -1,37 +1,10 @@
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import { ChevronDown } from 'lucide-react';
 import './Hero.css';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Parallax } from './Parallax';
 
 const Hero = () => {
   const heroRef = useRef(null);
-  const videoRef = useRef(null);
-
-  useEffect(() => {
-    // Force play the video on mobile devices
-    const video = videoRef.current;
-    if (video) {
-      const playPromise = video.play();
-      
-      // Handle autoplay restrictions
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          // Autoplay was prevented
-          const playOnInteraction = () => {
-            video.play().then(() => {
-              document.removeEventListener('click', playOnInteraction);
-              document.removeEventListener('touchstart', playOnInteraction);
-            });
-          };
-          
-          // Try to play on user interaction
-          document.addEventListener('click', playOnInteraction);
-          document.addEventListener('touchstart', playOnInteraction);
-        });
-      }
-    }
-  }, []);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -46,36 +19,28 @@ const Hero = () => {
       id="about-us"
       ref={heroRef} 
       className="relative flex items-center justify-center overflow-hidden h-screen"
-      style={{ 
-        marginTop: '0',
-        height: '100vh'
-      }}
     >
-      {/* Trusted By Section */}
-      <div className="absolute z-20 top-24 left-10">
-        <div className="inline-flex items-center px-5 py-2 bg-white border border-gray-400 rounded-full bg-opacity-10 backdrop-blur-sm">
+      {/* Tagline Bubble */}
+      <div className="absolute z-20 top-20 left-5 sm:top-24 sm:left-10">
+        <div className="inline-flex items-center px-4 py-2 bg-white border border-gray-400 rounded-full bg-opacity-10 backdrop-blur-sm">
           <span className="font-sans text-xs font-normal text-white">Get Success Together!</span>
         </div>
       </div>
-      {/* Video Background with Parallax */}
+
+      {/* Video Background */}
       <motion.div 
         className="absolute inset-0 overflow-hidden"
         style={{ y: yBg }}
       >
         <video 
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="absolute inset-0 object-cover w-full h-full"
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          preload="auto" 
           webkit-playsinline="true"
-          x5-playsinline="true"
-          x5-video-player-type="h5"
-          x5-video-player-fullscreen="true"
-          x5-video-orientation="portrait"
-          disablePictureInPicture
+          poster="/fallback.jpg"   // <-- fallback image
+          className="absolute inset-0 object-cover w-full h-full"
         >
           <source src="https://res.cloudinary.com/dhzhuobu2/video/upload/v1755885121/webvideo_hxmyjf.mp4" type="video/mp4" />
           Your browser does not support the video tag.
@@ -83,34 +48,32 @@ const Hero = () => {
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
       </motion.div>
 
-      {/* Main Content with Parallax */}
+      {/* Main Content */}
       <motion.div 
         className="relative z-10 flex flex-col items-center justify-center w-full h-full max-w-6xl px-6 mx-auto"
         style={{ y: yText }}
       >
-        <h1 className="text-4xl font-bold leading-tight tracking-tight text-center md:text-6xl lg:text-7xl">
-          <span 
-            className="block text-xl font-medium text-white transition-opacity duration-300 font-poppins brand-tagline md:text-2xl lg:text-3xl"
-            style={{ marginBottom: '0.5rem' }}
-          >
+        <h1 className="hero-title text-center">
+          <span className="brand-tagline">
             Where brands are born at the intersection of
           </span>
-          <span className="relative inline-flex flex-wrap justify-center gap-x-1 gap-y-1 brand-words" style={{ marginTop: '0.25rem' }}>
-            <span className="relative block px-4 py-2 text-2xl font-black text-white rounded-lg font-poppins md:text-3xl lg:text-4xl">
+          <span className="relative inline-flex flex-wrap justify-center gap-x-1 gap-y-1 brand-words">
+            <span className="relative block text-white font-black px-4 py-2">
               Tech
             </span>
-            <span className="self-center text-white font-poppins mx-0.5">-</span>
-            <span className="relative block px-4 py-2 text-2xl font-black text-white rounded-lg font-poppins md:text-3xl lg:text-4xl">
+            <span className="self-center text-white mx-0.5">-</span>
+            <span className="relative block text-white font-black px-4 py-2">
               People
             </span>
-            <span className="self-center text-white font-poppins mx-0.5">-</span>
-            <span className="relative block px-4 py-2 text-2xl font-black text-white rounded-lg font-poppins md:text-3xl lg:text-4xl">
-              MEDIA
+            <span className="self-center text-white mx-0.5">-</span>
+            <span className="relative block text-white font-black px-4 py-2">
+              Media
             </span>
           </span>
         </h1>
       </motion.div>
       
+      {/* Scroll Down Button */}
       <div className="absolute z-20 transform -translate-x-1/2 bottom-8 left-1/2">
         <motion.button 
           onClick={() => {
@@ -127,14 +90,8 @@ const Hero = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           initial={{ y: 0 }}
-          animate={{ 
-            y: [0, 10, 0],
-          }}
-          transition={{ 
-            repeat: Infinity, 
-            duration: 1.5,
-            ease: "easeInOut"
-          }}
+          animate={{ y: [0, 10, 0] }}
+          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
         >
           <ChevronDown className="w-8 h-8" />
         </motion.button>
