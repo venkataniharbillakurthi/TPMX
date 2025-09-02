@@ -23,16 +23,17 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 z-50 w-full font-sans bg-white/90 backdrop-blur-sm border-b border-gray-100 shadow-sm" style={{ fontFamily: 'Satoshi, sans-serif', color: '#000000' }}>
-      <div className="w-full px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14 md:h-16">
+    <div className="fixed top-0 left-0 right-0 z-50 w-screen overflow-x-hidden bg-white">
+      <nav className="w-full" style={{ fontFamily: 'Satoshi, sans-serif', color: '#000000' }}>
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-14 md:h-20 w-full">
           {/* Logo */}
           <div className="flex-shrink-0">
             <a href="#home">
               <img 
                 src={logo} 
                 alt="TPMX Logo" 
-                className="w-auto h-6 md:h-10"
+                className="w-auto h-8 md:h-10"
                 style={{ maxHeight: '40px' }}
               />
             </a>
@@ -84,13 +85,12 @@ const Navbar = () => {
           </div>
           
           {/* Mobile menu button */}
-          <div className="flex items-center -mr-2 md:hidden">
+          <div className="flex items-center md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="inline-flex items-center justify-center p-1.5 text-gray-700 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500"
-              aria-controls="mobile-menu"
-              aria-expanded="false"
+              className="inline-flex items-center justify-center p-2 text-gray-700 transition-colors rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500"
+              aria-expanded={isOpen}
             >
               <span className="sr-only">Open main menu</span>
               <svg 
@@ -119,8 +119,8 @@ const Navbar = () => {
       </div>
 
       {/* Mobile menu */}
-      <div className={`md:hidden ${isOpen ? 'block' : 'hidden'} bg-white/95`}>
-        <div className="px-2 pt-1 pb-2">
+      <div className={`md:hidden ${isOpen ? 'block' : 'hidden'} w-screen bg-white`}>
+        <div className="px-4 py-2 space-y-1">
           {[
             { name: 'Welcome Hub', id: 'about-us', emoji: '👋' },
             { name: 'What We Do', id: 'services', emoji: '🎯' },
@@ -128,7 +128,7 @@ const Navbar = () => {
             { name: 'How We Work', id: 'process', emoji: '🔄' },
             { name: 'Partners', id: 'clients', emoji: '🤝' }
           ].map((item, index) => (
-            <div key={index} className="px-3 py-2 text-sm font-medium">
+            <div key={index} className="px-3 py-1.5 text-sm font-medium rounded-md">
               <a
                 href={`#${item.id}`}
                 className="flex items-center text-gray-700 hover:text-yellow-600"
@@ -161,8 +161,9 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <BookDemoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </nav>
+    <BookDemoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+  </div>
   );
 };
 

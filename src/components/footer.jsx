@@ -128,17 +128,19 @@ const Footer = () => {
           
           {/* Scroll to Top Button */}
           {isVisible && (
-            <button
-              onClick={scrollToTop}
-              className="fixed bottom-20 right-8 bg-black/80 hover:bg-black p-3 rounded-full transition-all duration-300 z-50 border border-white/20"
-              aria-label="Scroll to top"
-            >
-              <img 
-                src={upIcon} 
-                alt="Scroll to top" 
-                className="w-6 h-6"
-              />
-            </button>
+            <div className="fixed bottom-4 right-12 sm:bottom-8 sm:right-16 z-50">
+              <button
+                onClick={scrollToTop}
+                className="bg-black/80 hover:bg-black p-3 rounded-full transition-all duration-300 border border-white/20 flex items-center justify-center w-12 h-12"
+                aria-label="Scroll to top"
+              >
+                <img 
+                  src={upIcon} 
+                  alt="" 
+                  className="w-5 h-5"
+                />
+              </button>
+            </div>
           )}
         </motion.div>
       </motion.div>

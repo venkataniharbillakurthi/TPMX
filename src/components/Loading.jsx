@@ -24,24 +24,26 @@ const Loading = ({ onLoadingComplete }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black">
-      <div className="relative flex flex-col items-center">
+      <div className="relative flex flex-col items-center w-full max-w-2xl px-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="w-80 h-80 md:w-96 md:h-96 relative"
+          className="w-full max-w-md mx-auto relative"
+          style={{ paddingBottom: '100%' }} // 1:1 aspect ratio
         >
-          <iframe
-            src="https://player.cloudinary.com/embed/?cloud_name=dhzhuobu2&public_id=logo_mklbsw&player[controls]=false&autoplay=true&muted=true&loop=true"
-            width="100%"
-            height="100%"
-            frameBorder="0"
-            allow="autoplay; fullscreen; encrypted-media"
-            allowFullScreen
-            className="w-full h-full object-contain"
-            title="Loading Animation"
-            style={{ pointerEvents: 'none' }}
-          ></iframe>
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            preload="auto" 
+            webkit-playsinline="true"
+            className="absolute inset-0 w-full h-full object-contain"
+          >
+            <source src="https://res.cloudinary.com/dhzhuobu2/video/upload/v1755885121/webvideo_hxmyjf.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </motion.div>
         
         {/* Loading bar container */}
