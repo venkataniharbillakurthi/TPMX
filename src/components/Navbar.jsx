@@ -32,7 +32,7 @@ const Navbar = () => {
               <img 
                 src={logo} 
                 alt="TPMX Logo" 
-                className="w-auto h-8 md:h-10"
+                className="w-auto h-6 md:h-10"
                 style={{ maxHeight: '40px' }}
               />
             </a>
