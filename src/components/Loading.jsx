@@ -31,18 +31,17 @@ const Loading = ({ onLoadingComplete }) => {
           transition={{ duration: 0.5 }}
           className="w-80 h-80 md:w-96 md:h-96 relative"
         >
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
+          <iframe
+            src="https://player.cloudinary.com/embed/?cloud_name=dhzhuobu2&public_id=logo_mklbsw&player[controls]=false&autoplay=true&muted=true&loop=true"
+            width="100%"
+            height="100%"
+            frameBorder="0"
+            allow="autoplay; fullscreen; encrypted-media"
+            allowFullScreen
             className="w-full h-full object-contain"
-            onError={(e) => console.error('Video failed to load:', e)}
-          >
-            <source src="/videos/logo.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+            title="Loading Animation"
+            style={{ pointerEvents: 'none' }}
+          ></iframe>
         </motion.div>
         
         {/* Loading bar container */}
