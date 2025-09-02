@@ -15,7 +15,7 @@ yarn-error.log*
 .env.*.local
 
 # Media files
-*.mp4
+
 *.mov
 *.avi
 *.wmv
