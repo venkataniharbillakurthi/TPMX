@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 import './Hero.css';
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -6,6 +6,32 @@ import { Parallax } from './Parallax';
 
 const Hero = () => {
   const heroRef = useRef(null);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    // Force play the video on mobile devices
+    const video = videoRef.current;
+    if (video) {
+      const playPromise = video.play();
+      
+      // Handle autoplay restrictions
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          // Autoplay was prevented
+          const playOnInteraction = () => {
+            video.play().then(() => {
+              document.removeEventListener('click', playOnInteraction);
+              document.removeEventListener('touchstart', playOnInteraction);
+            });
+          };
+          
+          // Try to play on user interaction
+          document.addEventListener('click', playOnInteraction);
+          document.addEventListener('touchstart', playOnInteraction);
+        });
+      }
+    }
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -37,12 +63,19 @@ const Hero = () => {
         style={{ y: yBg }}
       >
         <video 
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
           className="absolute inset-0 object-cover w-full h-full"
+          webkit-playsinline="true"
+          x5-playsinline="true"
+          x5-video-player-type="h5"
+          x5-video-player-fullscreen="true"
+          x5-video-orientation="portrait"
+          disablePictureInPicture
         >
           <source src="https://res.cloudinary.com/dhzhuobu2/video/upload/v1755885121/webvideo_hxmyjf.mp4" type="video/mp4" />
           Your browser does not support the video tag.
