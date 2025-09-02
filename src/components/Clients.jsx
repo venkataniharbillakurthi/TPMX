@@ -361,7 +361,7 @@ const Clients = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Left Column - Title */}
             <motion.div 
-              className="text-center mb-12 md:mb-20"
+              className="text-left mb-12 md:mb-20"
               variants={itemVariants}
             >
               <motion.div 
@@ -371,11 +371,12 @@ const Clients = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <span className="inline-block px-2 py-1 text-lg font-satoshi text-[#e30e00] uppercase tracking-wider border-2 border-[#e30e00] rounded-full">
+                <span className="inline-block px-4 py-1 text-lg font-satoshi text-[#e30e00] uppercase tracking-wider border-2 border-[#e30e00] rounded-full">
                   Get in touch
                 </span>
+                <br /><br />
               </motion.div>
-              <h2 className="text-3xl md:text-5xl font-black text-black font-poppins">
+              <h2 className="text-3xl md:text-4xl font-black text-black font-poppins">
                 Ready to Make Some Noise?
               </h2>
             </motion.div>
