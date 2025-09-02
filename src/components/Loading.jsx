@@ -41,7 +41,7 @@ const Loading = ({ onLoadingComplete }) => {
             webkit-playsinline="true"
             className="absolute inset-0 w-full h-full object-contain"
           >
-            <source src="https://res.cloudinary.com/dhzhuobu2/video/upload/v1755885121/webvideo_hxmyjf.mp4" type="video/mp4" />
+            <source src="https://res.cloudinary.com/dhzhuobu2/video/upload/v1756792241/logo_mklbsw.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </motion.div>
