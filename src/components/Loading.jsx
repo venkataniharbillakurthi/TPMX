@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import logoVideo from '../assests/videos/logo.mp4';
+// Video is in the public directory
 
 const Loading = ({ onLoadingComplete }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -40,7 +40,7 @@ const Loading = ({ onLoadingComplete }) => {
             className="w-full h-full object-contain"
             onError={(e) => console.error('Video failed to load:', e)}
           >
-            <source src={logoVideo} type="video/mp4" />
+            <source src="/videos/logo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </motion.div>
