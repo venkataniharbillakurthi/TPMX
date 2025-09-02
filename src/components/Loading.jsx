@@ -1,10 +1,13 @@
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-// Video is in the public directory
+import { useEffect, useState, useRef } from 'react';
 
 const Loading = ({ onLoadingComplete }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
+  const videoRef = useRef(null);
+  
+  // Optimized video URL with Cloudinary transformations for mobile
+  const videoUrl = 'https://res.cloudinary.com/dhzhuobu2/video/upload/f_auto,q_auto:low,w_600,h_600,c_fill/logo_mklbsw.mp4';
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -31,17 +34,24 @@ const Loading = ({ onLoadingComplete }) => {
           transition={{ duration: 0.5 }}
           className="w-80 h-80 md:w-96 md:h-96 relative"
         >
-          <iframe
-            src="https://player.cloudinary.com/embed/?cloud_name=dhzhuobu2&public_id=logo_mklbsw&player[controls]=false&autoplay=true&muted=true&loop=true"
-            width="100%"
-            height="100%"
-            frameBorder="0"
-            allow="autoplay; fullscreen; encrypted-media"
-            allowFullScreen
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
             className="w-full h-full object-contain"
-            title="Loading Animation"
-            style={{ pointerEvents: 'none' }}
-          ></iframe>
+            onLoadedData={() => {
+              // Video is loaded and can play
+              if (videoRef.current) {
+                videoRef.current.play().catch(e => console.log('Autoplay prevented:', e));
+              }
+            }}
+          >
+            <source src={videoUrl} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </motion.div>
         
         {/* Loading bar container */}

@@ -117,24 +117,25 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu, show/hide based on menu state. */}
-      <div className={`${isOpen ? 'block' : 'hidden'} md:hidden`}>
-        <div className="px-2 pt-2 pb-3 space-y-1">
+      {/* Mobile menu */}
+      <div className={`md:hidden ${isOpen ? 'block' : 'hidden'} mt-1`}>
+        <div className="px-2 pt-1 pb-2 space-y-0.5">
           {[
-            { name: 'Welcome Hub', href: '#about-us', emoji: '👋' },
-            { name: 'What We Do', href: '#services', emoji: '🎯' },
-            { name: 'Our Why', href: '#mission', emoji: '💡' },
-            { name: 'How We Work', href: '#process', emoji: '🔄' },
-            { name: 'Partners', href: '#clients', emoji: '🤝' }
+            { name: 'Welcome Hub', id: 'about-us', emoji: '👋' },
+            { name: 'What We Do', id: 'services', emoji: '🎯' },
+            { name: 'Our Why', id: 'mission', emoji: '💡' },
+            { name: 'How We Work', id: 'process', emoji: '🔄' },
+            { name: 'Partners', id: 'clients', emoji: '🤝' }
           ].map((item, index) => (
             <div key={index} className="px-3 py-2 text-base font-medium rounded-md">
               <a
-                href={item.href}
+                href={`#${item.id}`}
                 className="flex items-center text-gray-700 hover:text-yellow-600"
                 onClick={(e) => {
-                  if (item.href.startsWith('#')) {
-                    e.preventDefault();
-                    document.getElementById(item.href.substring(1))?.scrollIntoView({ behavior: 'smooth' });
+                  e.preventDefault();
+                  const target = document.getElementById(item.id);
+                  if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
                     setIsOpen(false);
                   }
                 }}

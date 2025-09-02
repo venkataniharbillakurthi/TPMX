@@ -26,7 +26,7 @@ const Hero = () => {
       }}
     >
       {/* Trusted By Section */}
-      <div className="absolute z-20 top-12 left-10">
+      <div className="absolute z-20 top-24 left-10">
         <div className="inline-flex items-center px-5 py-2 bg-white border border-gray-400 rounded-full bg-opacity-10 backdrop-blur-sm">
           <span className="font-sans text-xs font-normal text-white">Get Success Together!</span>
         </div>
