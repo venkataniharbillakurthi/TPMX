@@ -1,11 +1,14 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 import './Hero.css';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import fallbackImage from '../assests/fallback.png';
 
 const Hero = () => {
   const heroRef = useRef(null);
 
+  const [videoError, setVideoError] = useState(false);
+  
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start']
@@ -32,44 +35,31 @@ const Hero = () => {
         className="absolute inset-0 overflow-hidden"
         style={{ y: yBg }}
       >
-        <video 
-          autoPlay 
-          loop 
-          muted 
-          playsInline 
-          preload="auto"
-          webkit-playsinline="true"
-          x5-playsinline="true"
-          x5-video-player-type="h5"
-          x5-video-player-fullscreen="true"
-          className="absolute inset-0 object-cover w-full h-full"
-          onError={(e) => {
-            console.error('Error loading video:', e);
-            const video = e.target;
-            video.poster = '/fallback.jpg';
-            video.load();
-          }}
-          onCanPlay={(e) => {
-            // Force play to handle autoplay restrictions
-            const playPromise = e.target.play();
-            if (playPromise !== undefined) {
-              playPromise.catch(error => {
-                console.log('Auto-play was prevented:', error);
-                // Show play button or handle the error
-              });
-            }
-          }}
-        >
-          <source 
-            src="https://res.cloudinary.com/dhzhuobu2/video/upload/v1755885121/webvideo_hxmyjf.mp4" 
-            type="video/mp4"
+        {videoError ? (
+          <img 
+            src={fallbackImage} 
+            alt="Fallback content"
+            className="absolute inset-0 object-cover w-full h-full"
           />
-          <source 
-            src="https://res.cloudinary.com/dhzhuobu2/video/upload/v1755885121/webvideo_hxmyjf.webm" 
-            type="video/webm"
-          />
-          Your browser does not support the video tag.
-        </video>
+        ) : (
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            preload="auto"
+            webkit-playsinline="true"
+            className="absolute inset-0 object-cover w-full h-full"
+            onError={() => setVideoError(true)}
+            onLoadedData={() => setVideoError(false)}
+          >
+            <source 
+              src="https://res.cloudinary.com/dhzhuobu2/video/upload/v1755885121/webvideo_hxmyjf.mp4" 
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+        )}
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
       </motion.div>
 
