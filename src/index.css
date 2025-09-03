@@ -4,7 +4,21 @@
 
 @layer base {
   html, body, #root {
-    @apply bg-white;
+    @apply bg-white m-0 p-0 w-full h-full overflow-x-hidden;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #root {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 }
 

@@ -27,15 +27,18 @@ function App() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative flex flex-col min-h-screen w-full">
       {isLoading && <Loading onLoadingComplete={handleLoadingComplete} />}
-      <div className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
+      <div className={`${isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'} flex-1 flex flex-col w-full`}>
         <Navbar />
-        <Hero />
-        <Services />
-        <Mission />
-        <Process />
-        <Clients />
+        <main className="flex-1">
+          <Hero />
+          <Services />
+          <Mission />
+          <Process />
+          <Clients />
+          
+        </main>
         <Footer />
       </div>
     </div>
