@@ -39,6 +39,9 @@ const Hero = () => {
           playsInline 
           preload="auto"
           webkit-playsinline="true"
+          x5-playsinline="true"
+          x5-video-player-type="h5"
+          x5-video-player-fullscreen="true"
           className="absolute inset-0 object-cover w-full h-full"
           onError={(e) => {
             console.error('Error loading video:', e);
@@ -46,10 +49,24 @@ const Hero = () => {
             video.poster = '/fallback.jpg';
             video.load();
           }}
+          onCanPlay={(e) => {
+            // Force play to handle autoplay restrictions
+            const playPromise = e.target.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(error => {
+                console.log('Auto-play was prevented:', error);
+                // Show play button or handle the error
+              });
+            }
+          }}
         >
           <source 
             src="https://res.cloudinary.com/dhzhuobu2/video/upload/v1755885121/webvideo_hxmyjf.mp4" 
             type="video/mp4"
+          />
+          <source 
+            src="https://res.cloudinary.com/dhzhuobu2/video/upload/v1755885121/webvideo_hxmyjf.webm" 
+            type="video/webm"
           />
           Your browser does not support the video tag.
         </video>
