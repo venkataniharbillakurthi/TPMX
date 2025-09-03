@@ -3,24 +3,51 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
   html, body, #root {
-    @apply bg-white m-0 p-0 w-full h-full overflow-x-hidden;
+    @apply bg-white;
     margin: 0 !important;
     padding: 0 !important;
+    width: 100%;
+    max-width: 100%;
   }
   
   body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
   }
   
-  #root {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+  /* Mobile overflow control */
+  @media (max-width: 767px) {
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      position: fixed;
+      height: 100%;
+      -webkit-overflow-scrolling: auto;
+      overscroll-behavior: none;
+      touch-action: pan-y;
+    }
+    
+    body {
+      overflow-x: hidden;
+      width: 100vw;
+      max-width: 100%;
+    }
+    
+    /* Ensure all direct children of body don't cause overflow */
+    body > * {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
   }
 }
+
+
 
 /* Custom Animations */
 @keyframes fadeIn {
@@ -32,6 +59,7 @@
     opacity: 1;
     transform: translateY(0);
   }
+
 }
 
 @keyframes fadeInUp {
