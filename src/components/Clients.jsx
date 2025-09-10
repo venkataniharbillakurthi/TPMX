@@ -12,6 +12,7 @@ import spotifyLogo from '../assests/spotify-logo.jpg';
 import sonyLogo from '../assests/sony-logo.gif';
 import ideaIcon from "../assests/IDEA 2 ICON 1.svg";
 import noise from '../assests/noise.svg';
+import noiseHover from '../assests/noise_hover1.svg';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -78,7 +79,7 @@ const ContactForm = ({ onClose }) => {
           Let's Connect
         </h3>
         <form
-          action="https://formsubmit.co/venkataniharbillakurthi@gmail.com"
+          action="https://formsubmit.co/ajax/tpmx.creative@gmail.com"
           method="POST"
           className="space-y-6"
           onSubmit={() => {
@@ -346,11 +347,18 @@ const Clients = () => {
           className="hidden lg:flex justify-center items-center -mt-4 ml-48 relative"
           variants={fadeInUp}
         >
-          <img 
-            src={noise} 
-            alt="Noise texture" 
-            className="w-74 h-64 -mt-16 ml-48 -mt-24"
-          />
+          <div className="relative group">
+            <img 
+              src={noise} 
+              alt="Noise texture" 
+              className="w-74 h-64 -mt-16 ml-48 -mt-24 transition-opacity duration-300 group-hover:opacity-0"
+            />
+            <img 
+              src={noiseHover} 
+              alt="Noise texture hover" 
+              className="absolute top-0 left-0 w-74 h-64 -mt-16 ml-48 -mt-24 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            />
+          </div>
         </motion.div>
 
         {/* CTA Section */}

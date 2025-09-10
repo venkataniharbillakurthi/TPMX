@@ -4,6 +4,7 @@ import footerImage from '../assests/WHITE_TMPX_LOGO@300x.png';
 import './SocialIcons.css';
 import { useEffect, useState, useRef } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
+import FallingText from './FallingText';
 
 const socialLinks = [
   { icon: <FaFacebookF className="icon" />, url: 'https://www.facebook.com/profile.php?id=61578970899760' },
@@ -93,9 +94,21 @@ const Footer = () => {
           <div className="w-full h-px bg-white/20 mb-4"></div>
           
           <div className="container mx-auto text-center max-w-3xl px-4 mb-8">
-            <p className="text-white/80 font-satoshi text-base leading-relaxed">
-              TPMX is a digital innovation agency where People, Tech, and Media converge to build brands that last. We craft impactful branding, seamless digital experiences, and result-driven media strategies.
-            </p>
+            <div className="text-white/80 font-satoshi text-base leading-relaxed">
+              <div className="h-24 flex items-center justify-center">
+                <FallingText
+                  text="TPMX is a digital innovation agency where People, Tech, and Media converge to build brands that last. We craft impactful branding, seamless digital experiences, and result-driven media strategies."
+                  highlightWords={["TPMX", "People", "Tech", "Media", "brands", "branding", "digital experiences", "media strategies"]}
+                  highlightClass="highlighted"
+                  trigger="hover"
+                  backgroundColor="transparent"
+                  wireframes={false}
+                  gravity={0.3}
+                  fontSize="1rem"
+                  mouseConstraintStiffness={0.6}
+                />
+              </div>
+            </div>
           </div>
 
           <div className="container mx-auto px-4">

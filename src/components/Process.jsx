@@ -5,6 +5,7 @@ import PencilImage from '../assests/PENCIL.svg';
 import DigitalUX from '../assests/digital_UX.svg';
 import MediaMagicGirl from '../assests/MEDIA_MAGIC_GIRL.svg';
 import BrandingIdentity from '../assests/branding_and_identity.svg';
+import VariableProximity from './VariableProximity';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -80,9 +81,17 @@ const Process = () => {
           >
             <div className="pl-8 md:pl-16 pt-16 h-full flex flex-col">
               <div>
-                <h3 className="font-poppins text-2xl md:text-3xl text-white">
-                  Branding & Identity
-                </h3>
+                <div className="relative">
+                <VariableProximity
+                  label="Branding & Identity"
+                  className="font-poppins text-2xl md:text-3xl text-white"
+                  fromFontVariationSettings="'wght' 400, 'opsz' 9"
+                  toFontVariationSettings="'wght' 900, 'opsz' 64"
+                  containerRef={sectionRef}
+                  radius={150}
+                  falloff="gaussian"
+                />
+              </div>
                 <motion.div 
                   className="relative mt-2 pl-2 border-l border-white/10"
                   initial="hidden"
@@ -157,9 +166,17 @@ const Process = () => {
           >
             <div className="pl-8 md:pl-16 pt-16 h-full flex flex-col">
               <div>
-                <h3 className="font-poppins text-2xl md:text-3xl text-white">
-                  Digital Experiences
-                </h3>
+                <div className="relative">
+                <VariableProximity
+                  label="Digital Experiences"
+                  className="font-poppins text-2xl md:text-3xl text-white"
+                  fromFontVariationSettings="'wght' 400, 'opsz' 9"
+                  toFontVariationSettings="'wght' 900, 'opsz' 64"
+                  containerRef={sectionRef}
+                  radius={150}
+                  falloff="gaussian"
+                />
+              </div>
                 <p className="font-sans text-white text-base md:text-lg mt-8 leading-relaxed max-w-[90%]">
                   Websites, apps, AR filters—if it lives on a screen, we design and build it to be fast, beautiful and user-obsessed.
                 </p>
@@ -184,9 +201,17 @@ const Process = () => {
           >
             <div className="pl-8 md:pl-16 pt-16 h-full flex flex-col">
               <div>
-                <h3 className="font-poppins text-2xl md:text-3xl text-white">
-                  Media Magic
-                </h3>
+                <div className="relative">
+                <VariableProximity
+                  label="Media Magic"
+                  className="font-poppins text-2xl md:text-3xl text-white"
+                  fromFontVariationSettings="'wght' 400, 'opsz' 9"
+                  toFontVariationSettings="'wght' 900, 'opsz' 64"
+                  containerRef={sectionRef}
+                  radius={150}
+                  falloff="gaussian"
+                />
+              </div>
                 <p className="font-sans text-white text-base md:text-lg mt-8 leading-relaxed max-w-[90%]">
                   Campaigns, content, influencers, SEO and paid media. We turn ideas into scroll stopping stories and measurable results.
                 </p>
