@@ -5,7 +5,6 @@ import PencilImage from '../assests/PENCIL.svg';
 import DigitalUX from '../assests/digital_UX.svg';
 import MediaMagicGirl from '../assests/MEDIA_MAGIC_GIRL.svg';
 import BrandingIdentity from '../assests/branding_and_identity.svg';
-import VariableProximity from './VariableProximity';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -57,43 +56,35 @@ const Process = () => {
     <section 
       id="process" 
       ref={sectionRef} 
-      className="relative py-20 md:py-32 overflow-visible bg-white"
+      className="relative py-20 overflow-visible bg-white md:py-32"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="relative px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         {/* Title Section */}
         <motion.div 
-          className="text-center mb-16"
+          className="mb-16 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-black">
+          <h2 className="text-4xl font-bold text-black md:text-5xl">
             What We Do & How We Do It
           </h2>
         </motion.div>
 
         {/* Colored Bars Section */}
-        <div className="flex flex-col md:flex-row justify-center gap-12 w-full">
+        <div className="flex flex-col justify-center w-full gap-12 md:flex-row">
           <div 
             className="h-[500px] w-full md:w-[500px] rounded-tl-[150px] shadow-2xl relative" 
             style={{ backgroundColor: '#940900' }}
           >
-            <div className="pl-8 md:pl-16 pt-16 h-full flex flex-col">
+            <div className="flex flex-col h-full pt-16 pl-8 md:pl-16">
               <div>
-                <div className="relative">
-                <VariableProximity
-                  label="Branding & Identity"
-                  className="font-poppins text-2xl md:text-3xl text-white"
-                  fromFontVariationSettings="'wght' 400, 'opsz' 9"
-                  toFontVariationSettings="'wght' 900, 'opsz' 64"
-                  containerRef={sectionRef}
-                  radius={150}
-                  falloff="gaussian"
-                />
-              </div>
+                <h3 className="mb-4 text-2xl font-bold text-white font-poppins md:text-3xl">
+                  Branding & Identity
+                </h3>
                 <motion.div 
-                  className="relative mt-2 pl-2 border-l border-white/10"
+                  className="relative pl-2 mt-2 border-l border-white/10"
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
@@ -125,12 +116,12 @@ const Process = () => {
                       }}
                     >
                       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200 transform scale-0 group-hover:scale-100" />
-                      <div className="absolute right-3 top-1/2 -translate-y-1/2 text-xl opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-x-3 group-hover:translate-x-0">
+                      <div className="absolute text-xl transition-all duration-200 transform translate-x-3 -translate-y-1/2 opacity-0 right-3 top-1/2 group-hover:opacity-100 group-hover:translate-x-0">
                         {item.emoji}
                       </div>
-                      <span className="text-xl md:text-2xl font-medium text-white font-poppins tracking-wide relative inline-block">
+                      <span className="relative inline-block text-xl font-medium tracking-wide text-white md:text-2xl font-poppins">
                         <span className="relative z-10 flex items-center">
-                          <span className="text-sm mr-2 text-white/40 group-hover:text-white transition-colors duration-200">
+                          <span className="mr-2 text-sm transition-colors duration-200 text-white/40 group-hover:text-white">
                             0{index + 1}
                           </span>
                           <span>
@@ -164,19 +155,11 @@ const Process = () => {
             className="h-[500px] w-full md:w-[500px] rounded-tl-[150px] shadow-2xl relative" 
             style={{ backgroundColor: '#080071' }}
           >
-            <div className="pl-8 md:pl-16 pt-16 h-full flex flex-col">
+            <div className="flex flex-col h-full pt-16 pl-8 md:pl-16">
               <div>
-                <div className="relative">
-                <VariableProximity
-                  label="Digital Experiences"
-                  className="font-poppins text-2xl md:text-3xl text-white"
-                  fromFontVariationSettings="'wght' 400, 'opsz' 9"
-                  toFontVariationSettings="'wght' 900, 'opsz' 64"
-                  containerRef={sectionRef}
-                  radius={150}
-                  falloff="gaussian"
-                />
-              </div>
+                <h3 className="mb-4 text-2xl font-bold text-white font-poppins md:text-3xl">
+                  Digital Experiences
+                </h3>
                 <p className="font-sans text-white text-base md:text-lg mt-8 leading-relaxed max-w-[90%]">
                   Websites, apps, AR filters—if it lives on a screen, we design and build it to be fast, beautiful and user-obsessed.
                 </p>
@@ -199,19 +182,11 @@ const Process = () => {
             className="h-[500px] w-full md:w-[500px] rounded-tl-[150px] shadow-2xl relative" 
             style={{ backgroundColor: '#680982' }}
           >
-            <div className="pl-8 md:pl-16 pt-16 h-full flex flex-col">
+            <div className="flex flex-col h-full pt-16 pl-8 md:pl-16">
               <div>
-                <div className="relative">
-                <VariableProximity
-                  label="Media Magic"
-                  className="font-poppins text-2xl md:text-3xl text-white"
-                  fromFontVariationSettings="'wght' 400, 'opsz' 9"
-                  toFontVariationSettings="'wght' 900, 'opsz' 64"
-                  containerRef={sectionRef}
-                  radius={150}
-                  falloff="gaussian"
-                />
-              </div>
+                <h3 className="mb-4 text-2xl font-bold text-white font-poppins md:text-3xl">
+                  Media Magic
+                </h3>
                 <p className="font-sans text-white text-base md:text-lg mt-8 leading-relaxed max-w-[90%]">
                   Campaigns, content, influencers, SEO and paid media. We turn ideas into scroll stopping stories and measurable results.
                 </p>
@@ -233,7 +208,7 @@ const Process = () => {
 
         {/* Our Method Section */}
         <motion.div 
-          className="mt-72 relative py-20 overflow-visible bg-white"
+          className="relative py-20 overflow-visible bg-white mt-72"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
@@ -247,12 +222,12 @@ const Process = () => {
             className="absolute top-[35%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-[80%] h-auto opacity-60 -z-10"
           />
 
-          <div className="max-w-5xl mx-auto text-center mb-16">
+          <div className="max-w-5xl mx-auto mb-16 text-center">
             <motion.div 
-              className="relative -top-24 flex justify-center mb-6"
+              className="relative flex justify-center mb-6 -top-24"
               variants={fadeInUp}
             >
-              <span className="text-2xl md:text-4xl font-bold font-poppins text-gray-900 px-6 md:px-8 py-3 rounded-full border-2 border-dashed border-orange-400 inline-block">
+              <span className="inline-block px-6 py-3 text-2xl font-bold text-gray-900 border-2 border-orange-400 border-dashed rounded-full md:text-4xl font-poppins md:px-8">
                 Our Method
               </span>
             </motion.div>
@@ -260,7 +235,7 @@ const Process = () => {
 
           {/* Desktop: Pencil + Overlay */}
           <motion.div 
-            className="relative justify-center items-start -mt-40 hidden md:flex"
+            className="relative items-start justify-center hidden -mt-40 md:flex"
             variants={fadeInUp}
           >
             <img 
@@ -270,13 +245,13 @@ const Process = () => {
             />
 
             {/* Text overlays */}
-            <div className="absolute z-20 w-full h-full top-0 left-0 pointer-events-none">
+            <div className="absolute top-0 left-0 z-20 w-full h-full pointer-events-none">
               <div className="relative w-full h-full">
                 <div className="absolute" style={{ top: '15%', left: '59%', transform: 'translateX(-50%)' }}>
                   <div className="relative">
-                    <span className="text-white font-bold font-satoshi text-lg md:text-2xl">Think Big</span>
-                    <div className="absolute left-44 top-1/2 -translate-y-1/2 w-96">
-                      <span className="text-black font-satoshi text-sm md:text-2xl text-left block">
+                    <span className="text-lg font-bold text-white font-satoshi md:text-2xl">Think Big</span>
+                    <div className="absolute -translate-y-1/2 left-44 top-1/2 w-96">
+                      <span className="block text-sm text-left text-black font-satoshi md:text-2xl">
                         Discover the opportunity and dream up the wow.
                       </span>
                     </div>
@@ -285,18 +260,18 @@ const Process = () => {
                 <div className="absolute" style={{ top: '29%', left: '41%', transform: 'translateX(-50%)' }}>
                   <div className="relative">
                     <div className="absolute right-48 -top-2 w-72">
-                      <span className="text-black font-satoshi text-sm md:text-2xl text-right block">
+                      <span className="block text-sm text-right text-black font-satoshi md:text-2xl">
                         Prototype, test and iterate with real users.
                       </span>
                     </div>
-                    <span className="text-white font-bold font-satoshi text-lg md:text-2xl">Craft Smart</span>
+                    <span className="text-lg font-bold text-white font-satoshi md:text-2xl">Craft Smart</span>
                   </div>
                 </div>
                 <div className="absolute" style={{ top: '43%', left: '59%', transform: 'translateX(-50%)' }}>
                   <div className="relative">
-                    <span className="text-white font-bold font-satoshi text-lg md:text-2xl">Make it real</span>
-                    <div className="absolute left-48 top-1/2 -translate-y-1/2 w-72">
-                      <span className="text-black font-satoshi text-sm md:text-2xl text-left block">
+                    <span className="text-lg font-bold text-white font-satoshi md:text-2xl">Make it real</span>
+                    <div className="absolute -translate-y-1/2 left-48 top-1/2 w-72">
+                      <span className="block text-sm text-left text-black font-satoshi md:text-2xl">
                         Discover the opportunity and dream up the wow.
                       </span>
                     </div>
@@ -304,12 +279,12 @@ const Process = () => {
                 </div>
                 <div className="absolute" style={{ top: '56%', left: '42%', transform: 'translateX(-50%)' }}>
                   <div className="relative">
-                    <div className="absolute right-48 -top-2 w-64">
-                      <span className="text-black font-satoshi text-sm md:text-2xl text-right block">
+                    <div className="absolute w-64 right-48 -top-2">
+                      <span className="block text-sm text-right text-black font-satoshi md:text-2xl">
                         Distribute, optimise and scale until the world takes notice.
                       </span>
                     </div>
-                    <span className="text-white font-bold font-satoshi text-lg md:text-2xl">Turn it up</span>
+                    <span className="text-lg font-bold text-white font-satoshi md:text-2xl">Turn it up</span>
                   </div>
                 </div>
               </div>
@@ -317,28 +292,28 @@ const Process = () => {
           </motion.div>
 
           {/* Mobile: Stacked Steps (no pencil) */}
-          <div className="flex flex-col items-center gap-8 md:hidden px-4">
-            <div className="bg-white shadow-lg rounded-xl p-6 w-full max-w-sm text-center">
-              <h3 className="font-bold text-xl text-orange-600 mb-2">Think Big</h3>
-              <p className="text-gray-700 text-base">
+          <div className="flex flex-col items-center gap-8 px-4 md:hidden">
+            <div className="w-full max-w-sm p-6 text-center bg-white shadow-lg rounded-xl">
+              <h3 className="mb-2 text-xl font-bold text-orange-600">Think Big</h3>
+              <p className="text-base text-gray-700">
                 Discover the opportunity and dream up the wow.
               </p>
             </div>
-            <div className="bg-white shadow-lg rounded-xl p-6 w-full max-w-sm text-center">
-              <h3 className="font-bold text-xl text-orange-600 mb-2">Craft Smart</h3>
-              <p className="text-gray-700 text-base">
+            <div className="w-full max-w-sm p-6 text-center bg-white shadow-lg rounded-xl">
+              <h3 className="mb-2 text-xl font-bold text-orange-600">Craft Smart</h3>
+              <p className="text-base text-gray-700">
                 Prototype, test and iterate with real users.
               </p>
             </div>
-            <div className="bg-white shadow-lg rounded-xl p-6 w-full max-w-sm text-center">
-              <h3 className="font-bold text-xl text-orange-600 mb-2">Make it real</h3>
-              <p className="text-gray-700 text-base">
+            <div className="w-full max-w-sm p-6 text-center bg-white shadow-lg rounded-xl">
+              <h3 className="mb-2 text-xl font-bold text-orange-600">Make it real</h3>
+              <p className="text-base text-gray-700">
                 Discover the opportunity and dream up the wow.
               </p>
             </div>
-            <div className="bg-white shadow-lg rounded-xl p-6 w-full max-w-sm text-center">
-              <h3 className="font-bold text-xl text-orange-600 mb-2">Turn it up</h3>
-              <p className="text-gray-700 text-base">
+            <div className="w-full max-w-sm p-6 text-center bg-white shadow-lg rounded-xl">
+              <h3 className="mb-2 text-xl font-bold text-orange-600">Turn it up</h3>
+              <p className="text-base text-gray-700">
                 Distribute, optimise and scale until the world takes notice.
               </p>
             </div>

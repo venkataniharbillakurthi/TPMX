@@ -24,8 +24,8 @@ const ServiceCard = ({ emoji, title, description, index, dynamicImages }) => {
     <div 
       className={`service-card bg-white p-8 rounded-lg shadow-lg hover:shadow-xl ${serviceType}`}
     >
-      <div className="service-content flex items-start space-x-4">
-        <div className="service-emoji text-4xl w-12 h-12 flex-shrink-0 flex items-center justify-center">
+      <div className="flex items-start space-x-4 service-content">
+        <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-4xl service-emoji">
           {dynamicImages ? (
             <DynamicImage images={dynamicImages} interval={2000} />
           ) : (
@@ -36,7 +36,7 @@ const ServiceCard = ({ emoji, title, description, index, dynamicImages }) => {
           <h3 className="text-xl font-bold text-black font-poppins">
             {title}
           </h3>
-          <p className="text-black leading-relaxed font-sans text-l">
+          <p className="font-sans leading-relaxed text-black text-l">
             {description}
           </p>
         </div>
@@ -121,11 +121,11 @@ const Services = () => {
     <section 
       ref={sectionRef}
       id="services" 
-      className="relative pt-20 pb-32 px-4 sm:px-6 lg:px-6 bg-white overflow-hidden"
+      className="relative px-4 pt-20 pb-32 overflow-hidden bg-white sm:px-6 lg:px-6"
     >
       {/* Background Image */}
       <motion.div 
-        className="absolute inset-0 w-full h-full z-10 flex items-center justify-center"
+        className="absolute inset-0 z-10 flex items-center justify-center w-full h-full"
         style={{
           marginTop: '120px',
           pointerEvents: 'none',
@@ -137,7 +137,7 @@ const Services = () => {
         <div className="relative w-full h-full">
           {/* Inline SVG: yellow dotted curve revealed left-to-right (no rocket) */}
           <svg
-            className="absolute left-1/2 transform -translate-x-1/2"
+            className="absolute transform -translate-x-1/2 left-1/2"
             style={{ top: 'calc(50% + 40px)', zIndex: 10 }}
             width="1415"
             height="210"
@@ -215,7 +215,7 @@ const Services = () => {
           </svg>
           
            <motion.div
-            className="absolute top-1/2 transform -translate-y-1/2"
+            className="absolute transform -translate-y-1/2 top-1/2"
             style={{ left: 'calc(50% - 690px)',top: 'calc(50% - 210px)', zIndex: 5 }}
             animate={{
               y: [0, 10, 0],
@@ -237,11 +237,11 @@ const Services = () => {
           
         </div>
       </motion.div>
-      <div className="absolute inset-0 bg-white/20 z-0" />
+      <div className="absolute inset-0 z-0 bg-white/20" />
       <div className="relative z-10">
-        <div className="max-w-7xl mx-auto">
+        <div className="mx-auto max-w-7xl">
           <motion.div 
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start"
+            className="grid items-start grid-cols-1 gap-12 lg:grid-cols-2"
             variants={container}
             initial="hidden"
             animate={isInView || hasAnimated ? "show" : "hidden"}
@@ -264,7 +264,7 @@ const Services = () => {
                 What's buzzing right now?
               </motion.p>
               <motion.p 
-                className="text-black font-sans"
+                className="font-sans text-black"
                 variants={item}
               >
                 We stay plugged in so you don't have to. Tap into our brains and ride<br />

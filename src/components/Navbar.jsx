@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import BookDemoModal from './BookDemoModal';
 import logo from "../components/Final Logo.svg";
  // Save the image as tpmx-logo.png in src/assests
@@ -6,6 +7,8 @@ import logo from "../components/Final Logo.svg";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Load Satoshi font
@@ -22,49 +25,74 @@ const Navbar = () => {
     };
   }, []);
 
+  const handleNavClick = (e, item) => {
+    e.preventDefault();
+    setIsOpen(false);
+    
+    if (item.id === 'blog') {
+      navigate('/blog');
+      return;
+    }
+
+    // If we're not on the home page, navigate to home first
+    if (location.pathname !== '/') {
+      navigate(`/#${item.id}`, { replace: true });
+      // Scroll to section after a small delay to allow the page to load
+      setTimeout(() => {
+        const target = document.getElementById(item.id);
+        if (target) {
+          target.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 100);
+    } else {
+      // If we're already on the home page, just scroll to the section
+      const target = document.getElementById(item.id);
+      if (target) {
+        target.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
+  };
+
   return (
     <div className="fixed top-0 left-0 right-0 z-50 w-screen overflow-x-hidden bg-white">
       <nav className="w-full" style={{ fontFamily: 'Satoshi, sans-serif', color: '#000000' }}>
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-14 md:h-20 w-full">
+        <div className="w-full px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between w-full h-14 md:h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="#home">
+            <Link to="/">
               <img 
                 src={logo} 
                 alt="TPMX Logo" 
                 className="w-auto h-8 md:h-10"
                 style={{ maxHeight: '40px' }}
               />
-            </a>
+            </Link>
           </div>
           
           {/* Desktop Navigation */}
           <div className="items-center hidden ml-10 space-x-1 md:flex">
             {[
-              { name: 'Welcome Hub', id: 'about-us', emoji: '👋' },
-              { name: 'What We Do', id: 'services', emoji: '🎯' },
-              { name: 'Our Why', id: 'mission', emoji: '💡' },
-              { name: 'How We Work', id: 'process', emoji: '🔄' },
-              { name: 'Partners', id: 'clients', emoji: '🤝' }
+              { name: 'Welcome Hub', id: 'about-us', emoji: '👋', isLink: false },
+              { name: 'What We Do', id: 'services', emoji: '🎯', isLink: false },
+              { name: 'Our Why', id: 'mission', emoji: '💡', isLink: false },
+              { name: 'How We Work', id: 'process', emoji: '🔄', isLink: false },
+              { name: 'Partners', id: 'clients', emoji: '🤝', isLink: false },
+              { name: 'Blog', id: 'blog', emoji: '✍️', isLink: true }
             ].map((item, index) => (
               <div className="relative flex items-center justify-center group" key={index}>
                 <a
-                  href={`#${item.id}`}
-                  className="relative px-4 py-2 text-sm font-medium text-black transition-all duration-300 group-hover:scale-110 min-w-[100px] text-center"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const target = document.getElementById(item.id);
-                    if (target) {
-                      // Close mobile menu if open
-                      setIsOpen(false);
-                      // Scroll to section
-                      target.scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                      });
-                    }
-                  }}
+                  href={item.isLink ? `/${item.id}` : `#${item.id}`}
+                  className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 group-hover:scale-110 min-w-[100px] text-center ${
+                    (location.pathname === '/blog' && item.id === 'blog') ? 'text-red-600' : 'text-black'
+                  }`}
+                  onClick={(e) => handleNavClick(e, item)}
                 >
                   <span className="inline-flex items-center justify-center w-full h-full text-base transition-all duration-300 group-hover:scale-0 group-hover:opacity-0">
                     {item.name}
@@ -88,30 +116,30 @@ const Navbar = () => {
           <div className="flex items-center md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              type="button"
-              className="inline-flex items-center justify-center p-2 text-gray-700 transition-colors rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500"
-              aria-expanded={isOpen}
+              className="text-gray-700 hover:text-gray-900 focus:outline-none"
+              aria-label="Toggle menu"
             >
-              <span className="sr-only">Open main menu</span>
-              <svg 
-                className={`${isOpen ? 'hidden' : 'block'} h-6 w-6`} 
-                xmlns="http://www.w3.org/2000/svg" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor" 
-                aria-hidden="true"
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-              <svg 
-                className={`${isOpen ? 'block' : 'hidden'} h-6 w-6`} 
-                xmlns="http://www.w3.org/2000/svg" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor" 
-                aria-hidden="true"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                {isOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
               </svg>
             </button>
           </div>
@@ -119,46 +147,46 @@ const Navbar = () => {
       </div>
 
       {/* Mobile menu */}
-      <div className={`md:hidden ${isOpen ? 'block' : 'hidden'} w-screen bg-white`}>
-        <div className="px-4 py-2 space-y-1">
+      <div
+        className={`${
+          isOpen ? 'block' : 'hidden'
+        } md:hidden absolute top-14 left-0 right-0 bg-white shadow-lg z-50`}
+      >
+        <div className="px-2 pt-2 pb-3 space-y-1">
           {[
-            { name: 'Welcome Hub', id: 'about-us', emoji: '👋' },
-            { name: 'What We Do', id: 'services', emoji: '🎯' },
-            { name: 'Our Why', id: 'mission', emoji: '💡' },
-            { name: 'How We Work', id: 'process', emoji: '🔄' },
-            { name: 'Partners', id: 'clients', emoji: '🤝' }
-          ].map((item, index) => (
-            <div key={index} className="px-3 py-1.5 text-sm font-medium rounded-md">
-              <a
-                href={`#${item.id}`}
-                className="flex items-center text-gray-700 hover:text-yellow-600"
-                onClick={(e) => {
-                  e.preventDefault();
-                  const target = document.getElementById(item.id);
-                  if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                    setIsOpen(false);
-                  }
-                }}
-              >
-                <span className="mr-2">{item.emoji}</span>
-                {item.name}
-              </a>
-            </div>
-          ))}
-          
-          {/* Book a Call Button for mobile */}
-          <div className="px-3 pt-2 pb-3">
-            <button
-              onClick={() => {
-                setIsModalOpen(true);
-                setIsOpen(false);
+            { name: 'Welcome Hub', id: 'about-us', emoji: '👋', isLink: false },
+            { name: 'What We Do', id: 'services', emoji: '🎯', isLink: false },
+            { name: 'Our Why', id: 'mission', emoji: '💡', isLink: false },
+            { name: 'How We Work', id: 'process', emoji: '🔄', isLink: false },
+            { name: 'Partners', id: 'clients', emoji: '🤝', isLink: false },
+            { name: 'Blog', id: 'blog', emoji: '✍️', isLink: true }
+          ].map((item) => (
+            <a
+              key={item.id}
+              href={item.isLink ? `/${item.id}` : `#${item.id}`}
+              className={`block px-3 py-2 rounded-md text-base font-medium ${
+                (location.pathname === '/blog' && item.id === 'blog') ? 'text-red-600' : 'text-gray-700'
+              } hover:bg-gray-100`}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick(e, item);
               }}
-              className="w-full px-4 py-2 rounded-lg bg-[#e30e00] text-white font-semibold hover:bg-[#c50e00] transition-colors duration-200"
             >
-              Book a Call
-            </button>
-          </div>
+              <div className="flex items-center">
+                <span className="mr-2 text-xl">{item.emoji}</span>
+                <span>{item.name}</span>
+              </div>
+            </a>
+          ))}
+          <button
+            onClick={() => {
+              setIsOpen(false);
+              setIsModalOpen(true);
+            }}
+            className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-white bg-[#e30e00] hover:bg-[#c50e00] mt-2"
+          >
+            Book a Call
+          </button>
         </div>
       </div>
     </nav>
