@@ -60,7 +60,7 @@
 }
 
 .social-list li:nth-child(2) a:before {
-  background: #1DA1F2; /* Twitter blue */
+  background: #000000; /* Twitter blue */
 }
 
 .social-list li:nth-child(3) a:before {

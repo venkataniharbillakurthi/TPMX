@@ -22,7 +22,7 @@ const BlogPost = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="flex items-center justify-center min-h-screen bg-gray-50">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#940900] mx-auto mb-4"></div>
           <p className="text-gray-600">Loading post...</p>
@@ -33,9 +33,9 @@ const BlogPost = () => {
 
   if (!post) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="flex items-center justify-center min-h-screen bg-gray-50">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Post not found</h2>
+          <h2 className="mb-4 text-3xl font-bold text-gray-900">Post not found</h2>
           <Link 
             to="/blog" 
             className="inline-flex items-center text-[#940900] hover:text-[#680982] font-medium transition-colors duration-200"
@@ -50,7 +50,7 @@ const BlogPost = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Back Button */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-4 relative z-10">
+      <div className="relative z-10 px-4 pt-24 pb-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <Link 
           to="/blog" 
           className="inline-flex items-center text-[#940900] hover:text-[#680982] font-medium transition-colors duration-200 group"
@@ -75,7 +75,7 @@ const BlogPost = () => {
       
       {/* Header */}
       <header className="relative bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <div className="px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8 md:py-24">
           <div className="max-w-3xl mx-auto text-center">
             <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-4 text-white ${
               post.category === 'Tech' ? 'bg-[#940900]' :
@@ -84,13 +84,13 @@ const BlogPost = () => {
             }`}>
               {post.category}
             </span>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="mb-6 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl">
               {post.title}
             </h1>
             <div className="flex items-center justify-center space-x-4 text-gray-500">
               <div className="flex items-center">
                 <img 
-                  className="h-10 w-10 rounded-full mr-3" 
+                  className="w-10 h-10 mr-3 rounded-full" 
                   src={post.author.avatar} 
                   alt={post.author.name} 
                 />
@@ -105,25 +105,25 @@ const BlogPost = () => {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <article className="bg-white shadow-lg rounded-2xl overflow-hidden">
+      <main className="max-w-4xl px-4 py-12 mx-auto sm:px-6 lg:px-8">
+        <article className="overflow-hidden bg-white shadow-lg rounded-2xl">
           <img 
             src={post.image} 
             alt={post.title} 
-            className="w-full h-64 md:h-96 object-cover"
+            className="object-cover w-full h-64 md:h-96"
           />
           
           <div className="p-6 md:p-8">
             <div className="prose max-w-none">
               {post.content.map((paragraph, index) => (
-                <p key={index} className="text-gray-700 mb-4">
+                <p key={index} className="mb-4 text-gray-700">
                   {paragraph}
                 </p>
               ))}
             </div>
             
             {/* Tags */}
-            <div className="mt-8 pt-6 border-t border-gray-200">
+            <div className="pt-6 mt-8 border-t border-gray-200">
               <div className="flex flex-wrap gap-2 mt-6">
                 {post.tags.map((tag, index) => (
                   <span 
@@ -143,10 +143,10 @@ const BlogPost = () => {
         </article>
 
         {/* Author Bio */}
-        <div className="mt-12 bg-white rounded-2xl shadow-lg p-6 md:p-8">
+        <div className="p-6 mt-12 bg-white shadow-lg rounded-2xl md:p-8">
           <div className="flex items-center">
             <img 
-              className="h-16 w-16 rounded-full" 
+              className="w-16 h-16 rounded-full" 
               src={post.author.avatar} 
               alt={post.author.name} 
             />
@@ -162,8 +162,8 @@ const BlogPost = () => {
 
         {/* CTA Section */}
         <div className="mt-16 bg-gradient-to-r from-[#940900] to-[#680982] rounded-2xl p-8 md:p-12 text-center text-white">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to transform your digital marketing?</h2>
-          <p className="text-red-100 mb-8 max-w-2xl mx-auto">
+          <h2 className="mb-4 text-2xl font-bold md:text-3xl">Ready to transform your digital marketing?</h2>
+          <p className="max-w-2xl mx-auto mb-8 text-red-100">
             Let's discuss how we can help you implement these strategies in your business.
           </p>
           <button

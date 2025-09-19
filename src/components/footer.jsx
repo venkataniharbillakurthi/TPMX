@@ -1,23 +1,54 @@
-import { FaInstagram, FaFacebookF, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
+import { FaInstagram, FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import upIcon from '../assests/UP_ICON.svg';
 import footerImage from '../assests/WHITE_TMPX_LOGO@300x.png';
 import './SocialIcons.css';
 import { useEffect, useState, useRef } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
 import FallingText from './FallingText';
+import Toast from './Toast';
 
 const socialLinks = [
-  { icon: <FaFacebookF className="icon" />, url: 'https://www.facebook.com/profile.php?id=61578970899760' },
-  { icon: <FaTwitter className="icon" />, url: 'https://twitter.com' },
-  { icon: <FaLinkedinIn className="icon" />, url: 'https://linkedin.com' },
-  { icon: <FaInstagram className="icon" />, url: 'https://www.instagram.com/_tpm_x' }
+  { 
+    icon: <FaFacebookF className="icon" />, 
+    url: '#',
+    name: 'Facebook',
+    isActive: false
+  },
+  { 
+    icon: <FaXTwitter className="icon" />, 
+    url: '#',
+    name: 'X (Twitter)',
+    isActive: false
+  },
+  { 
+    icon: <FaLinkedinIn className="icon" />, 
+    url: '#',
+    name: 'LinkedIn',
+    isActive: false
+  },
+  { 
+    icon: <FaInstagram className="icon" />, 
+    url: 'https://www.instagram.com/_tpm_x',
+    name: 'Instagram',
+    isActive: true
+  }
 ];
 
 const Footer = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [toast, setToast] = useState({ show: false, message: '' });
   const controls = useAnimation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  const showToast = (message) => {
+    setToast({ show: true, message });
+  };
+
+  const closeToast = () => {
+    setToast(prev => ({ ...prev, show: false }));
+  };
   
   // Animation variants
   const containerVariants = {
@@ -82,20 +113,20 @@ const Footer = () => {
           <img 
             src={footerImage} 
             alt="TPMX Logo" 
-            className="h-full w-auto object-contain"
+            className="object-contain w-auto h-full"
             style={{ maxWidth: '100%' }}
           />
         </motion.div>
         
         <motion.div 
-          className="w-full bg-black pt-2 pb-4 relative"
+          className="relative w-full pt-2 pb-4 bg-black"
           variants={itemVariants}
         >
-          <div className="w-full h-px bg-white/20 mb-4"></div>
+          <div className="w-full h-px mb-4 bg-white/20"></div>
           
-          <div className="container mx-auto text-center max-w-3xl px-4 mb-8">
-            <div className="text-white/80 font-satoshi text-base leading-relaxed">
-              <div className="h-24 flex items-center justify-center">
+          <div className="container max-w-3xl px-4 mx-auto mb-8 text-center">
+            <div className="text-base leading-relaxed text-white/80 font-satoshi">
+              <div className="flex items-center justify-center h-24">
                 <FallingText
                   text="TPMX is a digital innovation agency where People, Tech, and Media converge to build brands that last. We craft impactful branding, seamless digital experiences, and result-driven media strategies."
                   highlightWords={["TPMX", "People", "Tech", "Media", "brands", "branding", "digital experiences", "media strategies"]}
@@ -111,29 +142,38 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="container mx-auto px-4">
+          <div className="container px-4 mx-auto">
             <motion.div 
-              className="flex flex-col md:flex-row justify-between items-center gap-4"
+              className="flex flex-col items-center justify-between gap-4 md:flex-row"
               variants={itemVariants}
             >
-              <ul className="social-list flex justify-center">
+              <ul className="flex justify-center social-list">
                 {socialLinks.map((item, index) => (
                   <li key={index}>
                     <a 
                       href={item.url} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="block"
-                      aria-label={`${item.url.includes('facebook') ? 'Facebook' : 
-                        item.url.includes('twitter') ? 'Twitter' : 
-                        item.url.includes('linkedin') ? 'LinkedIn' : 'Instagram'}`}
+                      className="relative block group"
+                      aria-label={item.name}
+                      onClick={(e) => {
+                        if (!item.isActive) {
+                          e.preventDefault();
+                          showToast(`${item.name} coming soon!`);
+                        }
+                      }}
                     >
                       {item.icon}
+                      {!item.isActive && (
+                        <span className="absolute px-2 py-1 text-xs text-white transition-opacity -translate-x-1/2 bg-black rounded opacity-0 pointer-events-none -top-8 left-1/2 whitespace-nowrap group-hover:opacity-100">
+                          Coming Soon
+                        </span>
+                      )}
                     </a>
                   </li>
                 ))}
               </ul>
-              <div className="text-white/70 text-sm font-satoshi">
+              <div className="text-sm text-white/70 font-satoshi">
                 &copy; {new Date().getFullYear()} TPMX. All Rights Reserved
               </div>
             </motion.div>
@@ -141,10 +181,10 @@ const Footer = () => {
           
           {/* Scroll to Top Button */}
           {isVisible && (
-            <div className="fixed bottom-4 right-12 sm:bottom-8 sm:right-16 z-50">
+            <div className="fixed z-50 bottom-4 right-12 sm:bottom-8 sm:right-16">
               <button
                 onClick={scrollToTop}
-                className="bg-black/80 hover:bg-black p-3 rounded-full transition-all duration-300 border border-white/20 flex items-center justify-center w-12 h-12"
+                className="flex items-center justify-center w-12 h-12 p-3 transition-all duration-300 border rounded-full bg-black/80 hover:bg-black border-white/20"
                 aria-label="Scroll to top"
               >
                 <img 
@@ -157,6 +197,11 @@ const Footer = () => {
           )}
         </motion.div>
       </motion.div>
+      <Toast 
+        message={toast.message} 
+        show={toast.show} 
+        onClose={closeToast} 
+      />
     </footer>
   );
 };
